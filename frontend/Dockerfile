@@ -1,4 +1,4 @@
-ARG NODE_VERSION=24.13.0-alpine
+ARG NODE_VERSION=26.8.1-alpine3.24
 
 # ---- Stage de dependências ----
 FROM node:${NODE_VERSION} AS dependencies
@@ -16,6 +16,10 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
+
+# ---- Stage de testes ----
+FROM builder AS tester
+RUN npm test
 
 # ---- Stage final: só o standalone ----
 FROM node:${NODE_VERSION} AS runner
