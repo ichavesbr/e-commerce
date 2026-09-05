@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express"
 import cors from "cors"
 
-const app = express()
+export const app = express()
 const PORT = process.env.PORT || 4000
 
 app.use(cors())
@@ -66,6 +66,8 @@ app.put("/orders/:id/status", (req: Request, res: Response) => {
   res.json({ message: `esta é a rota PUT /orders/${req.params.id}/status` })
 })
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`)
-})
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`)
+  })
+}
