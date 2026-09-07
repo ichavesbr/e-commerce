@@ -22,3 +22,5 @@ npm-debug.log*
 
 # Tests
 coverage/
+
+/src/generated/prisma
