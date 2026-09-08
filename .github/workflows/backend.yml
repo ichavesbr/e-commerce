@@ -15,14 +15,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 26.8.1
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+
+      - name: Gerar cliente Prisma
+        run: npx prisma generate
 
       - name: Build
         run: npm run build
@@ -40,7 +43,7 @@ jobs:
           node-version: 26.8.1
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Testes
         run: npm test
