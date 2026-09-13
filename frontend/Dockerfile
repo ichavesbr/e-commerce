@@ -29,7 +29,7 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # só necessário se usar next/image com otimização
-RUN npm install sharp
+# RUN npm install sharp
 
 RUN mkdir .next \
   && chown node:node .next
@@ -37,8 +37,8 @@ RUN mkdir .next \
 # se tiver pasta public/ na raiz do projeto, descomenta:
 # COPY --from=builder --chown=node:node /app/public ./public
 
-COPY --from=builder --chown=node:node /app/.next/standalone ./
-COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=tester --chown=node:node /app/.next/standalone ./
+COPY --from=tester --chown=node:node /app/.next/static ./.next/static
 
 USER node
 EXPOSE 3000
