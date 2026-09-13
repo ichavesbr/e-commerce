@@ -4,7 +4,7 @@ ARG NODE_VERSION=26.8.1-alpine3.24
 FROM node:${NODE_VERSION} AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund --legacy-peer-deps
 COPY . .
 RUN npm run build
 
@@ -18,9 +18,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package*.json ./
-RUN npm ci --omit=dev --no-audit --no-fund
+RUN npm ci --omit=dev --no-audit --no-fund --legacy-peer-deps
 
-COPY --from=builder /app/dist ./dist
+COPY --from=tester /app/dist ./dist
 
 USER node
 EXPOSE 4000
