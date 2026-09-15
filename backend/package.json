@@ -28,7 +28,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^26.5.0",
+    "@types/node": "^26.5.1",
     "@types/pg": "^8.23.1",
     "prisma": "^7.10.0",
     "tsx": "^4.23.13",
@@ -40,6 +40,7 @@
     "prisma@7.10.0": true,
     "@prisma/engines": true,
     "esbuild": true,
-    "fsevents@2.3.3": true
+    "fsevents@2.3.3": true,
+    "bcrypt@6.0.0": true
   }
 }
